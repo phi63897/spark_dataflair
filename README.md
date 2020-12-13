@@ -4,11 +4,11 @@ This repository contains practice excercises from the DataFlair spark course. Ea
 of a spark skill!
 
 Learning Scala: 
-  Stack Exchange Analysis
+  1. Stack Exchange Analysis
   
 Learning Spark_SQL:
-  Titanic Analysis
-  Olympic Analysis
+  1. Titanic Analysis
+  2. Olympic Analysis
   
 Learning Spark_Streaming:
-  Twitter Hashtag Analysis
+  1. Twitter Hashtag Analysis
