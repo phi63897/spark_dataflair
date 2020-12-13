@@ -12,4 +12,4 @@ Questions:
     5. Youngest athlete who won gold in each category of sports in each Olympic
     6. No of athletes from each country who has won a medal in each Olympic in each sports
     7. No of athletes won at least a medal in each events in all the Olympics
-    8. Country won highest no of medals in wrestling in 2012
+    8. Country won highest no of medals in wrestling in 2012 
