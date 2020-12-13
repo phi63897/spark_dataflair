@@ -1,0 +1,40 @@
+val titanic_data = spark.read.csv("/home/titanic_data.txt")
+
+#test to see format of titanic_data
+#titanic_data.show
+
+#prints schema of titanic_data
+titanic_data.printSchema
+
+titanic_data.createOrReplaceTempView("data")
+
+#KPI-1: Find the average age of people who died and who survived
+
+#avg age of people who survived, ignore those with age unknown
+spark.sql("SELECT avg(_c4) FROM data where (_c2 = 1) and (_c4 != 'NA')").show
+
+#avg age of people who died, ignore those with age unknown
+spark.sql("SELECT avg(_c4) FROM data where (_c2 = 0) and (_c4 != 'NA')").show
+
+#KPI-2:	Number of males and females survived in following age range: (age <= 20), (20 < age <= 50) and (age > 50 and age = NA)
+
+#number of males/females in (age <= 20)
+spark.sql("SELECT count(*) FROM data where (_c10 = 'male') and (_c4 != 'NA') and (_c4 <= 20)").show
+spark.sql("SELECT count(*) FROM data where (_c10 = 'female') and (_c4 != 'NA') and (_c4 <= 20)").show
+
+#number of males/females in (20 < age <= 50)
+spark.sql("SELECT count(*) FROM data where (_c10 = 'male') and (_c4 != 'NA') and (_c4 > 20) and (_c4 <= 50)").show
+spark.sql("SELECT count(*) FROM data where (_c10 = 'female') and (_c4 != 'NA') and (_c4 > 20) and (_c4 <= 50)").show
+
+#number of males/females in (age > 50 and age = NA)
+spark.sql("SELECT count(*) FROM data where (_c10 = 'male') and ((_c4 = 'NA') or (_c4 > 50))").show
+spark.sql("SELECT count(*) FROM data where (_c10 = 'female') and ((_c4 = 'NA') or (_c4 > 50))").show
+
+#KPI-3	embarked locations and their count
+spark.sql("SELECT _c5, count(*) as cnt FROM data group by _c5 order by cnt").show
+
+#KPI-4:	Number of people survived in each class
+spark.sql("SELECT _c1, count(*) FROM data where (_c2 = 1) group by _c1").show
+
+#KPI-5	Number of males survived whose age is less than 30 and travelling in 2nd class
+spark.sql("SELECT count(*) FROM data where (_c2 = 1) and (_c1 = '2nd') and (_c4 != 'NA') and (_c4 < 30)").show
