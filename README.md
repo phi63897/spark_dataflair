@@ -3,7 +3,7 @@
 This repository contains practice excercises from the DataFlair spark course. Each project aided my learning
 of a spark skill!
 
-Learning Scala:
+Learning Scala: 
   Stack Exchange Analysis
   
 Learning Spark_SQL:
